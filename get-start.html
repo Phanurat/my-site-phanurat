@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Get Started - Web3</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/@metamask/detect-provider"></script>
+
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>Get Started with Web3</h1>
+    </div>
+  </header>
+
+  <button onclick="connectMetamask()">Connect Metamask</button>
+
+  <main>
+    <div class="container">
+      <section>
+        <h2>Introduction</h2>
+        <p>Welcome to the world of Web3! Get started by following these steps:</p>
+        <ol>
+          <li>Learn about decentralized technologies.</li>
+          <li>Understand blockchain fundamentals.</li>
+          <li>Explore Web3 applications.</li>
+        </ol>
+      </section>
+
+      <section>
+        <h2>Resources</h2>
+        <ul>
+          <li><a href="#">Web3 Basics</a></li>
+          <li><a href="#">Blockchain Explained</a></li>
+          <li><a href="#">DApps Development</a></li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Get Started Today</h2>
+        <button id="startButton">Start Now</button>
+      </section>
+    </div>
+  </main>
+
+  <script src="/js/script.js"></script>
+</body>
+</html>
+<script>
+    async function connectMetamask() {
+      try {
+        // ตรวจสอบว่า MetaMask มีอยู่หรือไม่
+        const provider = await detectEthereumProvider();
+  
+        if (provider) {
+          // หากมี MetaMask ให้ขออนุญาตให้เข้าถึงบัญชี
+          const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
+          console.log('Connected:', accounts[0]); // แสดงบัญชีที่เชื่อมต่อ
+          alert('Connected to Metamask');
+        } else {
+          alert('Please install MetaMask');
+        }
+      } catch (error) {
+        console.error(error);
+        alert('Failed to connect to Metamask');
+      }
+    }
+  </script>
+  
